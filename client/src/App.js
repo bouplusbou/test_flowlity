@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
+import BarChart from './BarChart'
 
 function App() {
-  const [data, setData] = useState(null); 
+  const [data, setData] = useState([]); 
+  const [dataForChart, setDataForChart] = useState([]); 
   const [selectedOption, setSelectedOption] = useState(null); 
   const [options, setOptions] = useState(null); 
 
@@ -20,16 +22,23 @@ function App() {
   }, []);
 
   const handleChange = selection => {
-    setSelectedOption(selection);
-    console.log(`Option selected:`, selection);
+    setSelectedOption(selection.value);
+    const filteredData = data.filter(elem => elem.product_name === selection.value);
+    const inventoryLevels = filteredData.map(elem => elem.inventory_level);
+    setDataForChart(inventoryLevels);
   };
 
   return (
-    <Select
-      value={selectedOption}
-      onChange={handleChange}
-      options={options}
-    />
+    <Fragment>
+      <Select
+        value={selectedOption}
+        onChange={handleChange}
+        options={options}
+      />
+      <BarChart 
+        dataForChart={dataForChart}
+      />
+    </Fragment>
   );
 }
 
