@@ -1,0 +1,218 @@
+[
+    {
+        "productid": 0,
+        "productname": "screw_XPK23",
+        "date": "01-01-2018",
+        "inventorylevel": 234
+    },
+    {
+        "productid": 1,
+        "productname": "nut_EVCB45",
+        "date": "01-01-2018",
+        "inventorylevel": 1246
+    },
+    {
+        "productid": 2,
+        "productname": "blade_OPMN34",
+        "date": "01-01-2018",
+        "inventorylevel": 10797
+    },
+    {
+        "productid": 0,
+        "productname": "screw_XPK24",
+        "date": "01-02-2018",
+        "inventorylevel": 346
+    },
+    {
+        "productid": 1,
+        "productname": "nut_EVCB46",
+        "date": "01-02-2018",
+        "inventorylevel": 1358
+    },
+    {
+        "productid": 2,
+        "productname": "blade_OPMN35",
+        "date": "01-02-2018",
+        "inventorylevel": 10909
+    },
+    {
+        "productid": 0,
+        "productname": "screw_XPK25",
+        "date": "01-03-2018",
+        "inventorylevel": 456
+    },
+    {
+        "productid": 1,
+        "productname": "nut_EVCB47",
+        "date": "01-03-2018",
+        "inventorylevel": 1468
+    },
+    {
+        "productid": 2,
+        "productname": "blade_OPMN36",
+        "date": "01-03-2018",
+        "inventorylevel": 11019
+    },
+    {
+        "productid": 0,
+        "productname": "screw_XPK26",
+        "date": "01-04-2018",
+        "inventorylevel": 349
+    },
+    {
+        "productid": 1,
+        "productname": "nut_EVCB48",
+        "date": "01-04-2018",
+        "inventorylevel": 1361
+    },
+    {
+        "productid": 2,
+        "productname": "blade_OPMN37",
+        "date": "01-04-2018",
+        "inventorylevel": 10912
+    },
+    {
+        "productid": 0,
+        "productname": "screw_XPK27",
+        "date": "01-05-2018",
+        "inventorylevel": 389
+    },
+    {
+        "productid": 1,
+        "productname": "nut_EVCB49",
+        "date": "01-05-2018",
+        "inventorylevel": 1401
+    },
+    {
+        "productid": 2,
+        "productname": "blade_OPMN38",
+        "date": "01-05-2018",
+        "inventorylevel": 10952
+    },
+    {
+        "productid": 0,
+        "productname": "screw_XPK28",
+        "date": "01-06-2018",
+        "inventorylevel": 625
+    },
+    {
+        "productid": 1,
+        "productname": "nut_EVCB50",
+        "date": "01-06-2018",
+        "inventorylevel": 1637
+    },
+    {
+        "productid": 2,
+        "productname": "blade_OPMN39",
+        "date": "01-06-2018",
+        "inventorylevel": 11188
+    },
+    {
+        "productid": 0,
+        "productname": "screw_XPK29",
+        "date": "01-07-2018",
+        "inventorylevel": 459
+    },
+    {
+        "productid": 1,
+        "productname": "nut_EVCB51",
+        "date": "01-07-2018",
+        "inventorylevel": 1471
+    },
+    {
+        "productid": 2,
+        "productname": "blade_OPMN40",
+        "date": "01-07-2018",
+        "inventorylevel": 11022
+    },
+    {
+        "productid": 0,
+        "productname": "screw_XPK30",
+        "date": "01-08-2018",
+        "inventorylevel": 325
+    },
+    {
+        "productid": 1,
+        "productname": "nut_EVCB52",
+        "date": "01-08-2018",
+        "inventorylevel": 1337
+    },
+    {
+        "productid": 2,
+        "productname": "blade_OPMN41",
+        "date": "01-08-2018",
+        "inventorylevel": 10888
+    },
+    {
+        "productid": 0,
+        "productname": "screw_XPK31",
+        "date": "01-09-2018",
+        "inventorylevel": 299
+    },
+    {
+        "productid": 1,
+        "productname": "nut_EVCB53",
+        "date": "01-09-2018",
+        "inventorylevel": 1311
+    },
+    {
+        "productid": 2,
+        "productname": "blade_OPMN42",
+        "date": "01-09-2018",
+        "inventorylevel": 10862
+    },
+    {
+        "productid": 0,
+        "productname": "screw_XPK32",
+        "date": "01-10-2018",
+        "inventorylevel": 250
+    },
+    {
+        "productid": 1,
+        "productname": "nut_EVCB54",
+        "date": "01-10-2018",
+        "inventorylevel": 1262
+    },
+    {
+        "productid": 2,
+        "productname": "blade_OPMN43",
+        "date": "01-10-2018",
+        "inventorylevel": 10813
+    },
+    {
+        "productid": 0,
+        "productname": "screw_XPK33",
+        "date": "01-11-2018",
+        "inventorylevel": 150
+    },
+    {
+        "productid": 1,
+        "productname": "nut_EVCB55",
+        "date": "01-11-2018",
+        "inventorylevel": 1162
+    },
+    {
+        "productid": 2,
+        "productname": "blade_OPMN44",
+        "date": "01-11-2018",
+        "inventorylevel": 10713
+    },
+    {
+        "productid": 0,
+        "productname": "screw_XPK34",
+        "date": "01-12-2018",
+        "inventorylevel": 263
+    },
+    {
+        "productid": 1,
+        "productname": "nut_EVCB56",
+        "date": "01-12-2018",
+        "inventorylevel": 1275
+    },
+    {
+        "productid": 2,
+        "productname": "blade_OPMN45",
+        "date": "01-12-2018",
+        "inventorylevel": 10826
+    }
+]
