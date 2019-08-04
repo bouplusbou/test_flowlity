@@ -1,40 +1,135 @@
 import React, { useEffect } from 'react';
 import * as d3 from 'd3';
 
-function BarChart({ dataForChart }) {
+function BarChart({ selectedData }) {
     useEffect(() => {
-        if (dataForChart.length !== 0) {
-            console.log(dataForChart);
-            drawBarChart(dataForChart);
+        if (selectedData.length !== 0) {
+            d3.select("svg").remove();
+            drawBarChart(selectedData);
         }
-    }, [dataForChart]);
+    }, [selectedData]);
 
     const drawBarChart = (data) => {
-        const canvasHeight = 400;
-        const canvasWidth = 600;
-        const barPadding = 5;
-        const barWidth = (canvasWidth / data.length);
-        // using the max value to setup the highest point
-        const scale = Math.max(...dataForChart) / canvasHeight;
-        const svgCanvas = d3.select('div')
-            .append('svg')
-            .attr('width', canvasWidth)
-            .attr('height', canvasHeight)
-            .style('border', '1px solid black');
-        svgCanvas.selectAll('rect')
-            .data(data).enter()
-                .append('rect')
-                .attr('width', barWidth - barPadding)
-                .attr('height', datapoint => datapoint / scale)
-                .attr('fill', 'orange')
-                .attr('y', datapoint => canvasHeight - datapoint / scale)
-                .attr("transform", function (d, i) {
-                    var translate = [barWidth * i, 0]; 
-                    return "translate("+ translate +")";
-                });
+        
+
+// set the dimensions and margins of the graph
+var margin = {top: 30, right: 30, bottom: 70, left: 60},
+    width = 600 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#dataViz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+          
+
+
+// X axis
+var x = d3.scaleBand()
+  .range([ 0, width ])
+  .domain(data.map(function(d) { return d.date; }))
+  .padding(0.2);
+svg.append("g")
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(x))
+  .selectAll("text")
+    .attr("transform", "translate(-10,0)rotate(-45)")
+    .style("text-anchor", "end");
+
+const inventoryLevelArr = data.map(elem => elem.inventory_level);
+// Add Y axis
+var y = d3.scaleLinear()
+  .domain([0, Math.max(...inventoryLevelArr)])
+  .range([ height, 0]);
+svg.append("g")
+  .call(d3.axisLeft(y));
+
+
+
+
+  // ----------------
+  // Create a tooltip
+  // ----------------
+  var tooltip = d3.select("#dataViz")
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "tooltip")
+    .style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "1px")
+    .style("border-radius", "5px")
+    .style("padding", "10px")
+
+//   // Three function that change the tooltip when user hover / move / leave a cell
+//   var mouseover = function(d) {
+//     //   console.log(d);
+//     // var subgroupName = d3.select(this.parentNode).datum().key;
+//     // var subgroupValue = d.data[subgroupName];
+//     tooltip
+//         .html(`inventory_level: ${d.inventory_level}`)
+//         .style("opacity", 1)
+//   }
+// //   var mousemove = function(d) {
+// //     tooltip
+// //       .style("left", (d3.mouse(this)[0]+90) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
+// //       .style("top", (d3.mouse(this)[1]) + "px")
+// //   }
+//   var mouseleave = function(d) {
+//     tooltip
+//       .style("opacity", 0)
+//   }
+
+  // A function that change this tooltip when the user hover a point.
+  // Its opacity is set to 1: we can now see it. Plus it set the text and position of tooltip depending on the datapoint (d)
+  var showTooltip = function(d) {
+    tooltip
+      .transition()
+      .duration(100)
+      .style("opacity", 1)
+    tooltip
+      .html(`inventory_level: ${d.inventory_level}`)
+      .style("left", (d3.mouse(this)[0]+20) + "px")
+      .style("top", (d3.mouse(this)[1]) + "px")
+  }
+  var moveTooltip = function(d) {
+    tooltip
+    .style("left", (d3.mouse(this)[0]+20) + "px")
+    .style("top", (d3.mouse(this)[1]) + "px")
+  }
+  // A function that change this tooltip when the leaves a point: just need to set opacity to 0 again
+  var hideTooltip = function(d) {
+    tooltip
+      .transition()
+      .duration(100)
+      .style("opacity", 0)
+  }
+
+
+
+
+
+// Bars
+svg.selectAll("mybar")
+  .data(data)
+  .enter()
+  .append("rect")
+    .attr("x", function(d) { return x(d.date); })
+    .attr("y", function(d) { return y(d.inventory_level); })
+    .attr("width", x.bandwidth())
+    .attr("height", function(d) { return height - y(d.inventory_level); })
+    .attr("fill", "#69b3a2")
+        .on("mouseover", showTooltip )
+        .on("mousemove", moveTooltip )
+        .on("mouseleave", hideTooltip )
+
+
     };
 
-    return (<div></div>)   
+    return (<div id="dataViz"></div>)   
 }
 
 export default BarChart;

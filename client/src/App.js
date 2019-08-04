@@ -1,11 +1,14 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
-import BarChart from './BarChart'
+import BarChart from './BarChart';
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
 
 function App() {
   const [data, setData] = useState([]); 
-  const [dataForChart, setDataForChart] = useState([]); 
+  const [columns, setColumns] = useState([]); 
+  const [selectedData, setSelectedData] = useState([]); 
   const [selectedOption, setSelectedOption] = useState(null); 
   const [options, setOptions] = useState(null); 
 
@@ -17,6 +20,26 @@ function App() {
         const productNamesUnique = productNames.filter((elem, index) => productNames.indexOf(elem) === index);
         const formatedOptions = productNamesUnique.map(elem => {return { value: elem, label: elem }});
         setOptions(formatedOptions);
+        const setupColumns = [
+          {
+            Header: 'Product ID',
+            accessor: 'product_id'
+          },
+          {
+            Header: 'Product Name',
+            accessor: 'product_name'
+          },
+          {
+            Header: 'Date',
+            accessor: 'date'
+          },
+          {
+            Header: 'Inventory Level',
+            accessor: 'inventory_level'
+          },
+        ];
+        setColumns(setupColumns);
+        // {product_id: 0, product_name: "screw_XPK23", date: "01-01-2018", inventory_level: 234}
       })
       .catch(error => { console.log(error); })
   }, []);
@@ -24,8 +47,7 @@ function App() {
   const handleChange = selection => {
     setSelectedOption(selection.value);
     const filteredData = data.filter(elem => elem.product_name === selection.value);
-    const inventoryLevels = filteredData.map(elem => elem.inventory_level);
-    setDataForChart(inventoryLevels);
+    setSelectedData(filteredData);
   };
 
   return (
@@ -35,8 +57,13 @@ function App() {
         onChange={handleChange}
         options={options}
       />
+      <ReactTable
+        columns={columns}
+        data={selectedData}
+      >
+      </ReactTable>
       <BarChart 
-        dataForChart={dataForChart}
+        selectedData={selectedData}
       />
     </Fragment>
   );
