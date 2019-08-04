@@ -1,9 +1,27 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 import BarChart from './BarChart';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import styled from 'styled-components';
+
+const Section = styled.section`
+  padding: 10vh 10vw;
+`;
+const SelectSection = styled.section`
+  width: 400px;
+  margin-bottom: 3vw;
+`;
+const TableSection = styled.section`
+  margin-bottom: 3vw;
+`;
+const ChartSection = styled.section`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3vw;
+`;
+
 
 function App() {
   const [data, setData] = useState([]); 
@@ -23,19 +41,32 @@ function App() {
         const setupColumns = [
           {
             Header: 'Product ID',
-            accessor: 'product_id'
+            accessor: 'product_id',
+            width: 100,
+            style: {
+              textAlign: 'center'
+            }
           },
           {
             Header: 'Product Name',
-            accessor: 'product_name'
+            accessor: 'product_name',
+            style: {
+              textAlign: 'center'
+            }
           },
           {
             Header: 'Date',
-            accessor: 'date'
+            accessor: 'date',
+            style: {
+              textAlign: 'center'
+            }
           },
           {
             Header: 'Inventory Level',
-            accessor: 'inventory_level'
+            accessor: 'inventory_level',
+            style: {
+              textAlign: 'center'
+            }
           },
         ];
         setColumns(setupColumns);
@@ -51,21 +82,31 @@ function App() {
   };
 
   return (
-    <Fragment>
-      <Select
-        value={selectedOption}
-        onChange={handleChange}
-        options={options}
-      />
-      <ReactTable
-        columns={columns}
-        data={selectedData}
-      >
-      </ReactTable>
-      <BarChart 
-        selectedData={selectedData}
-      />
-    </Fragment>
+    <Section>
+      <SelectSection>
+        <h3>Select a product:</h3>
+        <Select
+          value={selectedOption}
+          onChange={handleChange}
+          options={options}
+        />
+      </SelectSection>
+      <TableSection>
+        <ReactTable
+          columns={columns}
+          data={selectedData}
+          minRows={1}
+          showPagination={false}
+          noDataText={''}
+        >
+        </ReactTable>
+      </TableSection>
+      <ChartSection>
+        <BarChart 
+          selectedData={selectedData}
+        />
+      </ChartSection>
+    </Section>
   );
 }
 
